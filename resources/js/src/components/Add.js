@@ -14,7 +14,7 @@ const Add = () => {
                     <textarea type="text" className="form-control" />
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-success">ADD</button>
+                    <button className="btn btn-success" type="button">ADD</button>
                 </div>
             </form>
         </AppContainer>
