@@ -5,8 +5,9 @@ const Add = () => {
     return (
         <AppContainer title="ADD POST">
             <form>
-                <div className="form-control">
-
+                <div className="form-group">
+                <label>title</label>
+                <input type="text" className="form-control"/>
                 </div>
             </form>
         </AppContainer>

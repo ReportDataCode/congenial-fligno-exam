@@ -5,7 +5,7 @@ import AppContainer from "./AppContainer";
 const Home = () => {
     return (
         <AppContainer title="Laravel + React.JS - CRUD">
-            <div class="card-header">Laravel + React.JS - CRUD</div>
+            
             <div class="card-body">
                 <Link to="/add" class="btn btn-primary">
                     Go somewhere
