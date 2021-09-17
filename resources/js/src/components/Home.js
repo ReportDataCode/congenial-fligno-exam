@@ -5,10 +5,9 @@ import AppContainer from "./AppContainer";
 const Home = () => {
     return (
         <AppContainer title="Laravel + React.JS - CRUD">
-            
             <div class="card-body">
                 <Link to="/add" class="btn btn-primary">
-                    Go somewhere
+                    ADD POST
                 </Link>
                 <div class="table-responsive">
                     <table class="table table-striped mt-4">
@@ -26,12 +25,12 @@ const Home = () => {
                                 <td>Laravel</td>
                                 <td> PHP web framework</td>
                                 <td>
-                                    <a href="#" className="btn btn-warning">
+                                    <Link to="/edit/1" className="btn btn-warning">
                                         EDIT
-                                    </a>
-                                    <a href="#" className="btn btn-danger">
+                                    </Link>
+                                    <Link href="#" className="btn btn-danger">
                                         DELETE
-                                    </a>
+                                    </Link>
                                 </td>
                             </tr>
                         </tbody>
