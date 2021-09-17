@@ -6,8 +6,15 @@ const Add = () => {
         <AppContainer title="ADD POST">
             <form>
                 <div className="form-group">
-                <label>title</label>
-                <input type="text" className="form-control"/>
+                    <label>title</label>
+                    <input type="text" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label>Description</label>
+                    <textarea type="text" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-success">ADD</button>
                 </div>
             </form>
         </AppContainer>
