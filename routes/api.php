@@ -19,11 +19,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/burger', function () {
+// get all burgers
+
+Route::get('/burgers', function () {
     return [
         'big',
         'small',
         'gigantic'
     ];
+});
+
+// create a burger
+
+Route::post('/burgers/{id}', function () {
+});
+
+// update a burger
+
+Route::put('/burgers', function () {
+});
+
+// delete a burger
+
+Route::delete('/burgers/{id}', function () {
 
 });
