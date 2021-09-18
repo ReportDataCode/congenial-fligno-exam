@@ -42,5 +42,5 @@ Route::put('/burgers', function () {
 // delete a burger
 
 Route::delete('/burgers/{id}', function () {
-
+    
 });
