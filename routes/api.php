@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('posts', 'PostController');
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 // get all burgers
@@ -45,4 +47,4 @@ Route::delete('/burgers/{id}', function () {
     
 });
 
-Route::resource('posts', 'PostController');
+
