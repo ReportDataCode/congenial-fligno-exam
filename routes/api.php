@@ -44,3 +44,5 @@ Route::put('/burgers', function () {
 Route::delete('/burgers/{id}', function () {
     
 });
+
+Route::resource('posts', 'PostController');
