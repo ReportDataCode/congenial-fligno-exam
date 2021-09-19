@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/{any?}', function () {
+    return view('welcome');
+})->where('any', '^(?!api).*$');
+
 Route::get(
     '/home',
     function () {
@@ -26,8 +30,9 @@ Route::get('/tutorials/{slug}', function ($slug) {
 });
 
 Route::get('/', function () {
-    
-    return view('welcome');})->where('any', '^(?!api).*$');
+
+    return view('welcome');
+})->where('any', '^(?!api).*$');
 
 
 Auth::routes();
