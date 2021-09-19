@@ -2606,11 +2606,15 @@ var Home = function Home() {
       posts = _useState2[0],
       setPosts = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  var fetchPosts = function fetchPosts() {
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].getAllPosts().then(function (res) {
       var result = res.data;
       setPosts(result.data);
     });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchPosts();
   }, []);
 
   var renderPosts = function renderPosts() {
@@ -2648,6 +2652,11 @@ var Home = function Home() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             type: "button",
             className: "btn btn-danger",
+            onClick: function onClick() {
+              _api__WEBPACK_IMPORTED_MODULE_2__["default"].deletePost(post.id).then(fetchPosts)["catch"](function (err) {
+                alert("Failed to delete post with id: " + post.id);
+              });
+            },
             children: "DELETE"
           })]
         })]

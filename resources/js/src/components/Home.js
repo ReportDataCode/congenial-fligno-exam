@@ -6,11 +6,15 @@ import api from "../api";
 const Home = () => {
     const [posts, setPosts] = useState(null);
 
-    useEffect(() => {
+    const fetchPosts = () => {
         api.getAllPosts().then((res) => {
             const result = res.data;
             setPosts(result.data);
         });
+    };
+
+    useEffect(() => {
+        fetchPosts();
     }, []);
 
     const renderPosts = () => {
@@ -37,7 +41,20 @@ const Home = () => {
                     <Link className="btn btn-warning" to={`/edit/${post.id}`}>
                         Edit
                     </Link>
-                    <button type="button" className="btn btn-danger">
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={() => {
+                            api.deletePost(post.id)
+                                .then(fetchPosts)
+                                .catch((err) => {
+                                    alert(
+                                        "Failed to delete post with id: " +
+                                            post.id
+                                    );
+                                });
+                        }}
+                    >
                         DELETE
                     </button>
                 </td>
