@@ -1,52 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContainer from "./AppContainer";
 import api from "../api";
 
 const Home = () => {
+    const [posts, setPosts] = useState(null);
+
     useEffect(() => {
         api.getAllPosts().then((res) => {
-            console.log("test get all posts");
-            console.log(res);
+            const result = res.data;
+            setPosts(result.data);
         });
     }, []);
 
+    const renderPosts = () => {
+        if (!posts) {
+            return (
+                <tr>
+                    <td colSpan="4">Loading posts...</td>
+                </tr>
+            );
+        }
+        if (posts.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="4">There is post yet. Add one.</td>
+                </tr>
+            );
+        }
+        return posts.map((post) => (
+            <tr>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.description}</td>
+                <td>
+                    <Link className="btn btn-warning" to={`/edit/${post.id}`}>
+                        Edit
+                    </Link>
+                    <button type="button" className="btn btn-danger">
+                        DELETE
+                    </button>
+                </td>
+            </tr>
+        ));
+    };
+
     return (
         <AppContainer title="Laravel + React.JS - CRUD">
-            <div className="card-body">
-                <Link to="/add" className="btn btn-primary">
-                    ADD POST
-                </Link>
-                <div className="table-responsive">
-                    <table className="table table-striped mt-4">
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Title</td>
-                                <td>Description</td>
-                                <td>Action</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Laravel</td>
-                                <td> PHP web framework</td>
-                                <td>
-                                    <Link
-                                        to="/edit/1"
-                                        className="btn btn-warning"
-                                    >
-                                        EDIT
-                                    </Link>
-                                    <Link href="#" className="btn btn-danger">
-                                        DELETE
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <Link to="/add" className="btn btn-primary">
+                ADD POST
+            </Link>
+            <div className="table-responsive">
+                <table className="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Title</td>
+                            <td>Description</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>{renderPosts()}</tbody>
+                </table>
             </div>
         </AppContainer>
     );

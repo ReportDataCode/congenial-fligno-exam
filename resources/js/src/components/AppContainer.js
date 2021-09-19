@@ -5,9 +5,7 @@ const AppContainer = ({ title, children }) => {
         <div className="container">
             <div className="card">
                 <h5 className="card-header">{title}</h5>
-                <div className="card-body">
-                    {children}
-                </div>
+                <div className="card-body">{children}</div>
             </div>
         </div>
     );
