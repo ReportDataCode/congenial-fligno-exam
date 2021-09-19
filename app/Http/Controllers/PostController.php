@@ -36,30 +36,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $post = new Post(
+            [
+                'title' => $request->title,
+                'description' => $request->description,
+            ]
+        );
+        $post->save();
+        return response()->json(['data' => 'Post created successfully.']);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param int $id
+     * @return  \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        return  new PostResource(Post::findOrFail($id));
+        
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -70,7 +72,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+        return response()->json(['data' => 'Post updated successfully.']);
     }
 
     /**
@@ -81,6 +91,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return response()->json(['data' => 'Post deleted successfully.']);
     }
 }
