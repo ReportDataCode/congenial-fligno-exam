@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import AppContainer from "./AppContainer";
+import api from "../api";
 
 const Home = () => {
+    useEffect(() => {
+        api.getAllPosts().then((res) => {
+            console.log("test get all posts");
+            console.log(res);
+        });
+    }, []);
+
     return (
         <AppContainer title="Laravel + React.JS - CRUD">
-            <div class="card-body">
-                <Link to="/add" class="btn btn-primary">
+            <div className="card-body">
+                <Link to="/add" className="btn btn-primary">
                     ADD POST
                 </Link>
-                <div class="table-responsive">
-                    <table class="table table-striped mt-4">
+                <div className="table-responsive">
+                    <table className="table table-striped mt-4">
                         <thead>
                             <tr>
                                 <td>ID</td>
@@ -25,7 +33,10 @@ const Home = () => {
                                 <td>Laravel</td>
                                 <td> PHP web framework</td>
                                 <td>
-                                    <Link to="/edit/1" className="btn btn-warning">
+                                    <Link
+                                        to="/edit/1"
+                                        className="btn btn-warning"
+                                    >
                                         EDIT
                                     </Link>
                                     <Link href="#" className="btn btn-danger">
