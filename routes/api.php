@@ -23,6 +23,10 @@ Route::resource('posts', 'PostController');
 
 // get all burgers
 
+Route::get('/testing-the-api', function () {
+    return ['message' => 'Hello Fligno!'];
+});
+
 Route::get('/burgers', function () {
     return [
         'big',
